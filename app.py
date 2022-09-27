@@ -189,6 +189,11 @@ def base():
 def upload_image():
     return render_template('newreport.html')
 
+@app.route('/userlayout')
+
+def userlayout():
+    return render_template('userlayout.html', title="userlayout")
+
 @app.route('/')
 def land():
     return render_template('land.html')
@@ -533,25 +538,25 @@ def ulogin():
 @login_required
 def useryeargroup():
     flash("Welcome to   CentralAlumina ", "success")
-    return render_template('useryeargroup.html')
+    return render_template('useryeargroup.html', header="Year Group", smalltitle="Central Alumni Platform", name="", numberofentries="16 entries")
 
 
 @app.route('/usernewform')
 @login_required
 def usernewform():
-    return render_template('usernewform.html')
+    return render_template('usernewform.html', header="Schools / Faculty", smalltitle="2021", name="", numberofentries="16 entries")
 
 
 @app.route('/userschool')
 @login_required
 def userschool():
-    return render_template('userschool.html')
+    return render_template('userschool.html', header="Department", smalltitle="2021", name="- CCSITA", numberofentries="16 entries")
 
 
 @app.route('/userbase')
 @login_required
 def userbase():
-    return render_template('userbase.html')
+    return render_template('userbase.html', header="Information Technology", smalltitle="2021", name="- CCSITA", numberofentries="16 entries")
 
 
 @app.route('/userinformation')
