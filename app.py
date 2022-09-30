@@ -86,10 +86,27 @@ class Person(db.Model, UserMixin):
     faculty= db.Column(db.String(200), nullable=True)
     hallofresidence= db.Column(db.String(200), nullable=True)
     password= db.Column(db.String(20))
+    school= db.Column(db.String(20))
     email= db.Column(db.String(20), nullable=True)
     phone= db.Column(db.String(10), nullable=True )
     indexnumber=db.Column(db.String())
     password=db.Column(db.String)
+    gender= db.Column(db.String()    )
+    department= db.Column(db.String()    )
+    program= db.Column(db.String()   )
+    telephone= db.Column(db.String()   )
+    admitted= db.Column(db.Integer()  )
+    address= db.Column(db.String()   )
+    work= db.Column(db.String()  )
+    guardian= db.Column(db.String()  )
+    kin= db.Column(db.String()   )
+    relationship= db.Column(db.String()  )
+    marital= db.Column(db.String()   )
+    health= db.Column(db.String()    )
+    extra= db.Column(db.String()     )
+    image_file = db.Column(db.String(20))
+    
+    
    
     def __repr__(self):
         return f"Person('{self.id}', {self.name}', {self.yearCompleted})"
@@ -101,6 +118,8 @@ class alumni(db.Model, UserMixin):
     password= db.Column(db.String(200) )
     email= db.Column(db.String(20) )
     indexnumber= db.Column(db.String(10)  )
+    telephone= db.Column(db.String(10)  )
+    
   
     
     
@@ -115,7 +134,7 @@ class User(db.Model,UserMixin):
     completed= db.Column(db.Integer()     )
     admitted= db.Column(db.Integer()  )
     email= db.Column(db.String()     )
-    telephone= db.Column(db.Integer()     )
+    telephone= db.Column(db.String()     )
     hall= db.Column(db.String()  )
     nationality= db.Column(db.String()   )
     address= db.Column(db.String()   )
@@ -177,6 +196,12 @@ def addalumni():
 def department():
     return render_template('department.html')
 
+
+@app.route('/current', methods=['GET', 'POST'])
+@login_required
+def current():
+    return render_template('current.html')
+
 @app.route('/newreport')
 @login_required
 def newreport():
@@ -188,6 +213,7 @@ def base():
     return dict(form=form)
 
 @app.route('/newreport')
+
 def upload_image():
     return render_template('newreport.html')
 
@@ -199,19 +225,19 @@ def index():
 
 @app.route('/userprofile', methods=['GET', 'POST'])
 def userprofile():
-    form=Adduser()
+    form=RegistrationForm()
     if form.validate_on_submit():
   
-            new=User(fullname=form.fullname.data,
+            new=Person(name=form.name.data,
                  indexnumber=form.indexnumber.data,
                    gender=form.gender.data, 
                     school=form.school.data,
                     department=form.department.data,
-                   completed=form.completed.data,
+                   yearCompleted=form.yearCompleted.data,
                    admitted=form.admitted.data,
                    email=form.email.data,  
                    telephone=form.telephone.data,  
-                   hall=form.hall.data,  
+                   hallofresidence=form.hallofresidence.data,  
                    nationality=form.nationality.data,  
                    address=form.address.data,  
                    work=form.work.data,  
@@ -224,7 +250,7 @@ def userprofile():
             db.session.add(new)
             db.session.commit()
             flash("New Alumni Added", "success")
-            return redirect('userbase')
+            return redirect('information')
     print(form.errors)
     return render_template("userprofile.html", form=form, title='addalumni')
  
@@ -246,10 +272,15 @@ def search():
     return render_template("search.html", form=form, searched =postsearched, posts=posts)
 
 
+@app.context_processor
+def base():
+    form=UserSearch()
+    return dict(form=form)
+
 #search for user
 @app.route('/usersearch', methods=[ 'POST'])
 def usersearch():
-    form= Search()
+    form= UserSearch()
     if request.method == 'POST': 
         posts =User.query
         if form.validate_on_submit():
@@ -258,7 +289,7 @@ def usersearch():
             posts =posts.order_by(User.indexnumber).all() 
             flash("You searched for "+ postsearched, "success")  
             print(posts)   
-    return render_template("usersearch.html", form=form, posts=posts)
+    return render_template("usersearch.html", form=form, posts=posts, header="Year Group", smalltitle="Central Alumni Platform", name="", numberofentries="16 entries")
 
 
 
@@ -380,7 +411,7 @@ def information():
     print(persons)
     return render_template("information.html", persons=persons)
  
- 
+
 
 
 #CRUD(update and delete routes)
@@ -430,8 +461,59 @@ def update(id):
             db.session.commit()
             return redirect(url_for('list')) 
         except:
-            return "errror"
+            return render_template("dashboard.html")
     return render_template("addAlumni.html", form=form)
+    
+    
+#CRUD(update and delete routes)
+@app.route("/updateuser/<int:id>", methods=['POST', 'GET'])
+def updateuser(id):
+    form=RegistrationForm()
+    user=Person.query.get_or_404(id)
+    if request.method== 'GET':
+        form.name.data = user.name
+        form.indexnumber.data = user.indexnumber
+        form.gender.data = user.gender
+        form.school.data = user.school
+        form.department.data = user.department
+        form.yearCompleted.data = user.yearCompleted
+        form.admitted.data = user.admitted
+        form.email.data = user.email   
+        form.telephone.data = user.telephone  
+        form.hallofresidence.data = user.hallofresidence  
+        form.nationality.data = user.nationality   
+        form.address.data = user.address  
+        form.work.data = user.work 
+        form.guardian.data = user.guardian   
+        form.marital.data = user.marital   
+        form.extra.data = user.extra  
+        form.image_file.data = user.image_file 
+    if request.method== 'POST':
+        new=Person(name=form.name.data,
+                 indexnumber=form.indexnumber.data,
+                   gender=form.gender.data, 
+                    school=form.school.data,
+                    department=form.department.data,
+                   yearCompleted=form.yearCompleted.data,
+                   admitted=form.admitted.data,
+                   email=form.email.data,  
+                   telephone=form.telephone.data,  
+                   hallofresidence=form.hallofresidence.data,  
+                   nationality=form.nationality.data,  
+                   address=form.address.data,  
+                   work=form.work.data,  
+                   guardian=form.guardian.data,  
+                  marital=form.marital.data,
+                  extra=form.extra.data,    
+               image_file=form.image_file.data
+                  )
+        try:    
+            db.session.add(new)
+            db.session.commit()
+            return redirect(url_for('information')) 
+        except:
+            return "errror"
+    return render_template("userprofile.html", form=form)
     
     
 #delete route
@@ -477,6 +559,7 @@ def login():
         print("form Validated successfully")
         user = Person.query.filter_by(email = form.email.data).first()
         print("user:" + user.email + "found")
+      
         print(user.password)
         if user and form.password.data == user.password:
             print(user.email + "validored successfully")
@@ -485,9 +568,10 @@ def login():
             return redirect(url_for('dashboard'))
             # next = request.args.get('next')
         else:
-            flash (f'The account cant be found', 'success')
+            flash (f'Wrong Password ', 'success')
+   
     return render_template('login.html', form=form)
-
+ 
 
 #signup route
 @app.route('/signup', methods=['POST','GET'])
@@ -560,7 +644,7 @@ def ulogin():
             return redirect(url_for('useryeargroup'))
             # next = request.args.get('next')
         else:
-            flash (f'The account cant be found', 'success')
+            flash (f'Wrong Password', 'success')
     return render_template('userlogin.html', form=form)
 
    
@@ -573,20 +657,20 @@ def ulogin():
 @login_required
 def useryeargroup():  
     
-    return render_template("useryeargroup.html")
+    return render_template("useryeargroup.html", header="Year Group", smalltitle="Central Alumni Platform", name="", numberofentries="16 entries")
  
 
 
 @app.route('/usernewform')
 @login_required
 def usernewform():
-    return render_template('usernewform.html')
+    return render_template('usernewform.html', header="Schools / Faculty", smalltitle="2021", name="", numberofentries="16 entries")
 
 
 @app.route('/userschool')
 @login_required
 def userschool():
-    return render_template('userschool.html')
+    return render_template('userschool.html', header="Department", smalltitle="2021", name="- CCSITA", numberofentries="16 entries")
 
 
 # @app.route('/userdisplay')
@@ -615,7 +699,7 @@ def userbase():
     users=User.query.order_by(User.id.desc()).all()
     print(users)
     print(current_user)
-    return render_template("userbase.html", users=users, current_user=current_user)
+    return render_template("userbase.html", users=users, current_user=current_user, header="Information Technology", smalltitle="2021", name="- CCSITA", numberofentries="16 entries")
  
 
   

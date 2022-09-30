@@ -14,10 +14,24 @@ class RegistrationForm(FlaskForm):
     email = StringField('email',validators=[(DataRequired() )])
     faculty = SelectField('faculty',  choices=[('Faculty/School','Faculty/School'),('Joy Otabil', 'Joy Otabil'), ('Faith','Faith'), ('Freedom','Freedom'), ('Kathryl Kuhlman ', 'Kathryl Kuhlman '), ('Justice','Justice'), ('Billy Graham','Billy Graham'),('Billy Graham','Billy Graham'),  ('Chancellor', 'Chancellor'),('Integerity','Integerity'), ], default=None )
     hallofresidence = SelectField('hallofresidence',  choices=[('Halls','Halls'),('Joy Otabil', 'Joy Otabil'), ('Faith','Faith'), ('Freedom','Freedom'), ('Kathryl Kuhlman ', 'Kathryl Kuhlman '), ('Justice','Justice'), ('Billy Graham','Billy Graham'),('Billy Graham','Billy Graham'),  ('Chancellor', 'Chancellor'),('Integerity','Integerity'), ], default=None )
-    password = PasswordField('password', validators=[DataRequired()])
+    password = PasswordField('password')
     submit = SubmitField('Register')
-
-#admin login  
+    program=StringField('program', validators=[(DataRequired())])
+    indexnumber =StringField('name', validators=[(DataRequired())])
+    gender =StringField('gender', validators=[(DataRequired())])
+    school =StringField('school', validators=[(DataRequired())])
+    department =StringField('department', validators=[(DataRequired())])
+    yearCompleted =StringField('yearCompleted', validators=[(DataRequired())])
+    admitted =  StringField('admitted', validators=[(DataRequired())])
+    telephone =  StringField('telephone', validators=[(DataRequired())])
+    address =  StringField('address', validators=[(DataRequired())])
+    work =  StringField('work', validators=[(DataRequired())])
+    guardian =  StringField('guardian', validators=[(DataRequired())])
+    marital =StringField('marital', validators=[(DataRequired())])
+    extra =    StringField('extra', validators=[(DataRequired())])
+    image_file =  StringField('extra', validators=[(DataRequired())])
+    
+#admin login              
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -25,9 +39,10 @@ class LoginForm(FlaskForm):
  
 class Registration(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
+    indexnumber = StringField('indexnumber')
     name = StringField('Name', validators=[DataRequired()])
-    indexnumber = StringField('indexnumber', validators=[DataRequired()])
+    phone= StringField('phone')
+   
     submit = SubmitField('SignUp')  
     # el4 = SelectField('el4', default='None', choices=[(user.lastname, user.lastname) for user in Person.query.all()])  
   
@@ -65,7 +80,11 @@ class Search(FlaskForm):
     submit = SubmitField('Search') 
     
     
-  
+class UserSearch(FlaskForm):
+    searched = StringField('Searched', validators=[DataRequired()])
+    submit = SubmitField('Search') 
+    
+    
   
   
 #userlogin  
@@ -79,5 +98,6 @@ class AlumniSignin(FlaskForm):
     email = StringField('email', validators=[DataRequired()])
     indexnumber = StringField('indexnumber', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
+    telephone = StringField('phone', validators=[DataRequired()])
     submit = SubmitField('SignUp')  
     
