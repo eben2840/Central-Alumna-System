@@ -1,6 +1,6 @@
 
 import os
-from PIL import Image
+
 import secrets
 import urllib.request, urllib.parse
 from flask_sqlalchemy import SQLAlchemy
@@ -103,6 +103,7 @@ class Person(db.Model, UserMixin):
     relationship= db.Column(db.String()  )
     marital= db.Column(db.String()   )
     health= db.Column(db.String()    )
+    form=db.Column(db.String())
     extra= db.Column(db.String()     )
     image_file = db.Column(db.String(20))
     
@@ -207,10 +208,6 @@ def current():
 def newreport():
     return render_template('newreport.html', title="newreport")
 
-@app.context_processor
-def base():
-    form=Search()
-    return dict(form=form)
 
 @app.route('/newreport')
 
@@ -256,6 +253,10 @@ def userprofile():
  
 
 
+@app.context_processor
+def base():
+    form=Search()
+    return dict(form=form)
 
 
 @app.route('/search', methods=[ 'POST'])
@@ -289,7 +290,7 @@ def usersearch():
             posts =posts.order_by(User.indexnumber).all() 
             flash("You searched for "+ postsearched, "success")  
             print(posts)   
-    return render_template("usersearch.html", form=form, posts=posts, header="Year Group", smalltitle="Central Alumni Platform", name="", numberofentries="16 entries")
+    return render_template("usersearch.html", form=form, searched =postsearched, posts=posts, header="Year Group", smalltitle="Central Alumni Platform", name="", numberofentries="16 entries")
 
 
 
@@ -563,8 +564,10 @@ def login():
         print(user.password)
         if user and form.password.data == user.password:
             print(user.email + "validored successfully")
+            if user == None:
+                flash(f"There was a problem")   
             login_user(user)
-           # flash (f' ' + user.email + ',You have been logged in successfully ' ,'success')
+            flash (f' ' + user.email + ',Welcome Admin ' ,'success')
             return redirect(url_for('dashboard'))
             # next = request.args.get('next')
         else:
@@ -640,7 +643,7 @@ def ulogin():
         if user and form.password.data == user.password:
             print(user.email + "validored successfully")
             login_user(user)
-           # flash (f' ' + user.email + ',You have been logged in successfully ' ,'success')
+            flash ('Welcome, Set up your profile ' ,'success')
             return redirect(url_for('useryeargroup'))
             # next = request.args.get('next')
         else:

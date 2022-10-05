@@ -30,28 +30,33 @@
     <h6 class="text-muted">{{numberofentries}}</h6>
     
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger mb-3" role="alert">
+            {{ message }} 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        
+        {% endfor %}
+    {% endif %}
+{% endwith %}
     
     Hello {{current_user.name}}
 
     <form class="d-flex " role="search" style="margin-top: 3vh; margin-bottom: 5vh;"  method='POST' action='{{url_for('usersearch')}}'>
-      <input class="form-control " type="search" placeholder="Search a particular person or category" aria-label="Search">
+      {{form.hidden_tag()}}
+      <input class="form-control " type="search"name='searched'  placeholder="Search a particular person or category" aria-label="Search">
       <button class="btn" style="color: #fff; background: #992621; border: none; margin-left: 2vw;" type="submit"><i class='bx bx-search-alt icon'></i></button>
         
     </form>  
+
+
+   
+
   </div>
   <br>
 
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-danger mb-3" role="alert">
-          {{ message }}   
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      
-      {% endfor %}
-  {% endif %}
-  {% endwith %}
 
 
   {% block body %}

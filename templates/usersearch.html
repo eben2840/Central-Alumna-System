@@ -4,10 +4,13 @@
 {% extends 'userlayout.html' %}
 {% block body %}
 
-<div class="row">
+  <div class="row">
+    {%if posts|length < 1 %}
+    
+    <h4 class="text-muted">No result for the {{searched}}</h4>
+    {%else %}
 
 
-<h4 class="text-muted">No result for the {{searched}}</h4>
 
 {% for post in posts %}
 
@@ -17,7 +20,7 @@
       </div>
 
     {% endfor %}  
-
+    {%endif%}
   </div>
     </div>
     {% endblock body %}
