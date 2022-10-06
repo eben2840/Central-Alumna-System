@@ -203,10 +203,6 @@ def department():
 def current():
     return render_template('current.html')
 
-@app.route('/newreport')
-@login_required
-def newreport():
-    return render_template('newreport.html', title="newreport")
 
 
 @app.route('/newreport')
@@ -273,10 +269,23 @@ def search():
     return render_template("search.html", form=form, searched =postsearched, posts=posts)
 
 
-@app.context_processor
-def base():
-    form=UserSearch()
-    return dict(form=form)
+
+@app.route('/newreport', methods=[ 'POST'])
+@login_required
+def newreport():
+    form= Adsearch()
+    if request.method == 'POST': 
+        posts =User.query
+        if form.validate_on_submit():
+            postsearched=form.searched.data
+            # posts =posts.filter(User.fullname.like('%'+ postsearched + '%') )
+            #posts =posts.filter(User.indexnumber.like('%'+ postsearched + '%') )
+            posts =posts.filter(User.completed.like('%'+ postsearched + '%') )
+            # posts =posts.filter(User.department.like('%'+ postsearched + '%') )
+            posts =posts.order_by(User.indexnumber).all() 
+            flash("You searched for "+ postsearched, "success")  
+            print(posts)   
+    return render_template("newreport.html", form=form, searched =postsearched, posts=posts)
 
 #search for user
 @app.route('/usersearch', methods=[ 'POST'])
@@ -643,7 +652,7 @@ def ulogin():
         if user and form.password.data == user.password:
             print(user.email + "validored successfully")
             login_user(user)
-            flash ('Welcome, Set up your profile ' ,'success')
+            flash ('Welcome, Finish Setting up your profile ' ,'success')
             return redirect(url_for('useryeargroup'))
             # next = request.args.get('next')
         else:

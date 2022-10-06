@@ -108,15 +108,103 @@
     <h6 style="text-align: left;"> {{profile.hall}}</h6> 
   </div>
 </div>         
-          <div class="position-sticky">
-            <button type="button" class="btn btn-lg" data-toggle="modal" data-target=".bd-example-modal-sm" style="width: 90%; background: #992621; color: #fff; padding: 12px 20px; font-weight: 300; border: none; border-radius: 10px; font-weight: bold;">Connect Now</button>       
-          </div>
+          
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal"style="width: 90%; background: #992621; color: #fff; padding: 12px 20px; font-weight: 300; border: none; border-radius: 10px; font-weight: bold;" data-bs-target="#staticBackdrop">
+  Connnect Now
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+   
+      <div class="modal-body">
+       <!--instagram-->
+        <div style="display: flex; border-bottom: 3px solid #f2f2f2;">
+          <div class="user-pic" style="padding-right: 10px;">
+              <img src="static/img/memoji.png" style="border-radius:10px;" >
+          </div>
+          <div class="user-text" style="display: flex; justify-content: space-between; width: 100%; margin-top: 15px;">
+                  <div>
+                       <h5 class="nams"><b>Phone Number</h5>
+                      <h6 class="text-muted">{{profile.telephone}}</h6><br>
+                  </div>  
+          </div>
+              
+        </div>
+         
+        <!--facebook-->
+        <div style="display: flex; border-bottom: 3px solid #f2f2f2;">
+          <div class="user-pic" style="padding-right: 10px;">
+              <img src="static/img/memoji.png" style="border-radius:10px; margin-top:20px;" >
+          </div>
+          <div class="user-text" style="display: flex; justify-content: space-between; width: 100%; margin-top: 15px;">
+                  <div>
+                       <h5 class="nams" style=" margin-top:15px;"><b>Phone Number</h5>
+                      <h6 class="text-muted">{{profile.telephone}}</h6><br>
+                  </div>  
+          </div>
+              
+        </div>  
+
+           
+        <!--twitter-->
+        <div style="display: flex; border-bottom: 3px solid #f2f2f2;">
+          <div class="user-pic" style="padding-right: 10px;">
+              <img src="static/img/memoji.png" style="border-radius:10px; margin-top:20px;" >
+          </div>
+          <div class="user-text" style="display: flex; justify-content: space-between; width: 100%; margin-top: 15px;">
+                  <div>
+                       <h5 class="nams" style=" margin-top:15px;"><b>Phone Number</h5>
+                      <h6 class="text-muted">{{profile.telephone}}</h6><br>
+                  </div>  
+          </div>
+              
+        </div>  
+
+           
+        <!--Linkedin-->
+        <div style="display: flex; border-bottom: 3px solid #f2f2f2;">
+          <div class="user-pic" style="padding-right: 10px;">
+              <img src="static/img/memoji.png" style="border-radius:10px; margin-top:20px;" >
+          </div>
+          <div class="user-text" style="display: flex; justify-content: space-between; width: 100%; margin-top: 15px;">
+                  <div>
+                       <h5 class="nams" style=" margin-top:15px;"><b>Phone Number</h5>
+                      <h6 class="text-muted">{{profile.telephone}}</h6><br>
+                  </div>  
+          </div>
+              
+        </div>  
+           
+        <!--whatsapp-->
+        <div style="display: flex; border-bottom: 3px solid #f2f2f2;">
+          <div class="user-pic" style="padding-right: 10px;">
+              <img src="static/img/memoji.png" style="border-radius:10px; margin-top:20px;" >
+          </div>
+          <div class="user-text" style="display: flex; justify-content: space-between; width: 100%; margin-top: 15px;">
+                  <div>
+                       <h5 class="nams" style=" margin-top:15px;"><b>Phone Number</h5>
+                      <h6 class="text-muted">{{profile.telephone}}</h6><br>
+                  </div>  
+          </div>
+              
+        </div>  
+
+      
+     
+    </div>
+  </div>
+</div>
       </div>
     </div>
     </div>
 
 
-    {%endblock block%}
+    {%endblock body%}
     
     

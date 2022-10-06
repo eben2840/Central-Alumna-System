@@ -84,6 +84,9 @@ class UserSearch(FlaskForm):
     searched = StringField('Searched', validators=[DataRequired()])
     submit = SubmitField('Search') 
     
+class Adsearch(FlaskForm):
+    searched = StringField('Searched', validators=[DataRequired()])
+    submit = SubmitField('Search') 
     
   
   

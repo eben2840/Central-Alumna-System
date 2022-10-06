@@ -12,15 +12,34 @@
 
 
 
-{% for post in posts %}
 
-      <div class="department-item" data-aos="fade-down-left">
-          <h1 class="text-muted">{{post.fullname}}</h1>
-          <h6 class="text-muted">{{post.indexnumber}}</h6>
-      </div>
 
-    {% endfor %}  
-    {%endif%}
+<div style="display: flex; border-bottom: 3px solid #f2f2f2;">
+  <div class="user-pic" style="padding-right: 10px;">
+      <img src="static/img/memoji.png" >
   </div>
-    </div>
+  <div class="user-text" style="display: flex; justify-content: space-between; width: 100%; margin-top: 15px;">
+        <div>
+         
+          {% for post in posts %}
+          <div>
+                <h4 class="names"><b> {{post.fullname}}</h4>
+              <h6 class="text-muted">{{post.indexnumber}}</h6><br><br>
+          </a>
+          </div>
+    
+          {% endfor %}
+          {%endif%}
+            
+
+  </div>
+</div>
+      </div>
+      
+  </div>
+ 
+</div>
+
+
+</div>
     {% endblock body %}
