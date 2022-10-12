@@ -29,7 +29,7 @@ class RegistrationForm(FlaskForm):
     guardian =  StringField('guardian', validators=[(DataRequired())])
     marital =StringField('marital', validators=[(DataRequired())])
     extra =    StringField('extra', validators=[(DataRequired())])
-    image_file =  StringField('extra', validators=[(DataRequired())])
+    image_file =  StringField('image', validators=[(DataRequired())])
     
 #admin login              
 class LoginForm(FlaskForm):
@@ -68,7 +68,7 @@ class Adduser(FlaskForm):
     picture = FileField('Add a picture', validators=[ FileAllowed(['jpg', 'png','jpeg'])])
     extra= StringField('extra')
     submit = SubmitField('Register')
-    image_file = FileField('image_file', validators=[FileAllowed(['jpg', 'png'])])
+    image_file = StringField('image_file')
   
   
 
@@ -104,3 +104,22 @@ class AlumniSignin(FlaskForm):
     telephone = StringField('phone', validators=[DataRequired()])
     submit = SubmitField('SignUp')  
     
+    
+    
+
+class Addschool(FlaskForm):
+    name= StringField('phone', validators=[DataRequired()])
+    submit = SubmitField('SignUp')  
+    
+class Adddepartment(FlaskForm):
+    name= StringField('phone', validators=[DataRequired()])
+    school= SelectField('school',  choices=[('ccsita','ccsita'),('Married', 'Married'), ('Divored','divored'), ('Single','Single')  ], default=None )
+    submit = SubmitField('submit')  
+    
+class Addprogram(FlaskForm):
+    name= StringField('phone', validators=[DataRequired()])
+    submit = SubmitField('SignUp')  
+    
+class Addyear(FlaskForm):
+    name= StringField('phone', validators=[DataRequired()])
+    submit = SubmitField('SignUp')  

@@ -117,9 +117,6 @@ class Person(db.Model, UserMixin):
     form=db.Column(db.String())
     extra= db.Column(db.String()     )
     image_file = db.Column(db.String(20))
-    
-    
-   
     def __repr__(self):
         return f"Person('{self.id}', {self.name}', {self.yearCompleted})"
 
@@ -131,7 +128,8 @@ class alumni(db.Model, UserMixin):
     email= db.Column(db.String(20) )
     indexnumber= db.Column(db.String(10)  )
     telephone= db.Column(db.String(10)  )
-    
+    def __repr__(self):
+        return f"alumni('{self.id}', {self.name}', {self.email})"
   
     
     
@@ -158,6 +156,38 @@ class User(db.Model,UserMixin):
     health= db.Column(db.String()    )
     extra= db.Column(db.String()     )
     image_file = db.Column(db.String(20))
+    def __repr__(self):
+        return f"User('{self.id}', {self.fullname}, {self.gender}'"
+    
+class Department(db.Model,UserMixin):
+    id= db.Column(db.Integer, primary_key=True)
+    name= db.Column(db.String())
+    school= db.Column(db.String()) 
+    
+    def __repr__(self):
+        return f"Department('{self.id}', {self.name}'"
+    
+class School(db.Model,UserMixin):
+    id= db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String)
+    def __repr__(self):
+        return f"School('{self.id}', {self.name}'"
+    
+        
+class Year(db.Model,UserMixin):
+    id= db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String)
+    def __repr__(self):
+        return f"year('{self.id}', {self.name}'"
+    
+class Program(db.Model,UserMixin):
+    id= db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String) 
+    school =db.Column(db.String) 
+    department =db.Column(db.String) 
+    def __repr__(self):
+        return f"Program('{self.id}', {self.name}'"
+    
     
 @app.route('/dashboard')
 @login_required
@@ -226,6 +256,47 @@ def upload_image():
 def index():    
     return render_template('index.html')
 
+@app.route('/addschool' , methods=['GET', 'POST'])
+def addschool():    
+    form=Addschool()
+    schools=School.query.order_by(School.id.desc()).all()
+    if form.validate_on_submit():
+        centralschool= School(name=form.name.data)
+        db.session.add(centralschool)
+        db.session.commit()
+        flash("New School Added", "success")
+        return redirect('addschool')
+    print(form.errors)
+    return render_template('addschool.html',form=form, schools=schools)
+
+
+@app.route('/adddepartment' , methods=['GET', 'POST'])
+def adddepartment():    
+    form=Adddepartment()
+    departments=Department.query.order_by(Department.id.desc()).all()
+    if form.validate_on_submit():
+        centralschool= Department(name=form.name.data,school=form.school.data)
+        db.session.add(centralschool)
+        db.session.commit()
+        flash("New School Added", "success")
+        return redirect('adddepartment')
+    print(form.errors)
+    return render_template('adddepartment.html',form=form, departments=departments)
+
+
+@app.route('/addprogram' , methods=['GET', 'POST'])
+def addprogram():    
+    form=Addprogram()
+    programs=Program.query.order_by(Program.id.desc()).all()
+    print(programs)
+    if form.validate_on_submit():
+        centrals= Program(name=form.name.data)
+        db.session.add(centrals)
+        db.session.commit()
+        flash("New Program Added", "success")
+        return redirect('addprogram')
+    print(form.errors)
+    return render_template('addprogram.html',form=form, programs=programs)
 
 @app.route('/userprofile', methods=['GET', 'POST'])
 def userprofile():
@@ -317,7 +388,14 @@ def usersearch():
 @app.route('/year', methods=['GET', 'POST'])
 @login_required
 def year():
-    return render_template('year.html', title='year')
+    form=Addyear()
+    years=Year.query.all()
+    if request.method== 'POST':
+        schools=Year(name=form.data)
+        db.session.add(schools)
+        db.session.commit()
+    return render_template('year.html', form=form, title="newschools",years=years)
+
 
 
 @app.route('/list/<int:userid>', methods=['GET', 'POST'])
@@ -343,7 +421,13 @@ def lists():
 
 @app.route('/newschools', methods=['GET', 'POST'])
 def newschools():
-    return render_template('newschools.html', title="newschools")
+    form=Addschool()
+    schools=School.query.all()
+    if request.method== 'POST':
+        schools=School(name=form.data)
+        db.session.add(schools)
+        db.session.commit()
+    return render_template('newschools.html', form=form, title="newschools",schools=schools)
 
 
 @app.route('/logout')
