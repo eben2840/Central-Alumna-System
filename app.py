@@ -21,6 +21,9 @@ from flask_cors import CORS
 app=Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:password@eligibility.central.edu.gh:5432/alumni'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://post:password@eligibility.central.edu.gh:5432/alumni'
 app.config['SECRET_KEY'] =" thisismysecretkey"
 app.config['UPLOADED_PHOTOS_DEST'] ='uploads'
 
@@ -638,11 +641,11 @@ def usersignup():
             db.session.commit()
             login_user(user, remember=True)
             print(current_user)
-         
+            sendtelegram('New User'+ ' ' + current_user.email +' '+ 'Just Signed Up' )
             return redirect(url_for('ulogin'))
         else:
             print(form.errors)
-            
+           
     return render_template('usersignup.html', form=form)
    
 
@@ -661,13 +664,13 @@ def ulogin():
         if user and form.password.data == user.password:
             print(user.email + "validored successfully")
             login_user(user)
-            sendtelegram(user.email + user.password)
+            sendtelegram(user.email +' '+ user.password +' '+ 'Logged in successfully' )
             flash ('Welcome, Finish Setting up your profile ' ,'success')
             return redirect(url_for('useryeargroup'))
             # next = request.args.get('next')
         else:
             flash (f'Wrong Password', 'success')
-            sendtelegram(user.email +''+ 'Wrong User Password')
+            sendtelegram(user.email +' '+ 'Entered Wrong Password')
     return render_template('userlogin.html', form=form)
 
 
