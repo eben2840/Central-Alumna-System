@@ -113,7 +113,7 @@ class Addschool(FlaskForm):
     
 class Adddepartment(FlaskForm):
     name= StringField('phone', validators=[DataRequired()])
-    school= SelectField('school',  choices=[('ccsita','ccsita'),('Married', 'Married'), ('Divored','divored'), ('Single','Single')  ], default=None )
+    school= SelectField('school',  choices=[(('ccsita','ccsita'),('PA','PA'), ('CUBA','CUBA'), ('PHARMACY','PHARMACY'),('NURSING','NURSING'),( 'SADe','SADe'),('FASS','FASS'))], default=None )
     submit = SubmitField('submit')  
     
 class Addprogram(FlaskForm):

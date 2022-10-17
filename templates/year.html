@@ -11,7 +11,7 @@
   <div class="col-md-4 ">
     <div class="dashboard-item" data-aos="fade-up">
         <p class="text-muted">{{year.name}}</p>
-        <a href="/list" style="text-decoration: none;"><h4 class="dashboard-item-text" ><b>{{year.name}}</b></h4></a>
+        <a href="{{url_for("newschools", year=year.name)}}"style="text-decoration: none;"><h4 class="dashboard-item-text" ><b>{{year.name}}</b></h4></a>
     </div>
   </div>
   {%endfor%}

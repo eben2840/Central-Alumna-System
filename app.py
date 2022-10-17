@@ -197,6 +197,10 @@ def dashboard():
         flash(f"There was a problem")
     return render_template('dashboard.html', title='dashboard')
 
+    eay
+@app.route('/getstudent')
+def getstudent():
+    return render_template('getstudent.html')
 
 
 
@@ -287,7 +291,7 @@ def adddepartment():
 @app.route('/addprogram' , methods=['GET', 'POST'])
 def addprogram():    
     form=Addprogram()
-    programs=Program.query.order_by(Program.id.desc()).all()
+    programs=Program.query()
     print(programs)
     if form.validate_on_submit():
         centrals= Program(name=form.name.data)
@@ -394,6 +398,7 @@ def year():
         schools=Year(name=form.data)
         db.session.add(schools)
         db.session.commit()
+        
     return render_template('year.html', form=form, title="newschools",years=years)
 
 
@@ -419,15 +424,15 @@ def lists():
  
 
 
-@app.route('/newschools', methods=['GET', 'POST'])
-def newschools():
+@app.route('/<int:year>/newschools', methods=['GET', 'POST'])
+def newschools(year ):
     form=Addschool()
     schools=School.query.all()
     if request.method== 'POST':
         schools=School(name=form.data)
         db.session.add(schools)
         db.session.commit()
-    return render_template('newschools.html', form=form, title="newschools",schools=schools)
+    return render_template('newschools.html', form=form, title="newschools",schools=schools,year=year)
 
 
 @app.route('/logout')
@@ -743,18 +748,26 @@ def ulogin():
     if form.validate_on_submit():
         print("form Validated successfully")
         user = Person.query.filter_by(email = form.email.data).first()
-        print("user:" + user.email + "found")
-        print(user.password)
-        if user and form.password.data == user.password:
-            print(user.email + "validored successfully")
-            login_user(user)
-            sendtelegram(user.email +' '+ user.password +' '+ 'Logged in successfully' )
-            flash ('Welcome, Finish Setting up your profile ' ,'success')
-            return redirect(url_for('useryeargroup'))
-            # next = request.args.get('next')
+            # flash (f'Wrong Password', 'success')
+            # sendtelegram('Entered Wrong Emai')
+        if user != None:
+            print("user:" + user.email + "found")
+            print(user.password)
+            if user and form.password.data == user.password:
+                print(user.email + "validored successfully")
+                login_user(user)
+                sendtelegram(user.email +' '+ user.password +' '+ 'Logged in successfully' )
+                flash ('Welcome, Finish Setting up your profile ' ,'success')
+                return redirect(url_for('useryeargroup'))
+                # next = request.args.get('next')
+            else:
+                flash (f'Wrong Password', 'success')
+                sendtelegram(user.email +' '+ 'Entered Wrong Password')
         else:
-            flash (f'Wrong Password', 'success')
-            sendtelegram(user.email +' '+ 'Entered Wrong Password')
+            sendtelegram("BEANS")
+            flash (f'Wrong Password', 'danger')
+            
+            
     return render_template('userlogin.html', form=form)
 
 
