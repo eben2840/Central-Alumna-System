@@ -14,23 +14,82 @@
   </head>
   <body>
 
+   
+<div class="container" style=" border-radius:0 0 0 150px; padding: 20px; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(84,84,201,1) 0%, rgba(0,212,255,1) 100%);">
+ 
+  <div class="row">
+   
+   
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for message in messages %}
         <div class="alert alert-danger mb-3" role="alert">
-            {{ message }}  {{current_user.name}}
+            {{ message }} 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         
         {% endfor %}
     {% endif %}
-    {% endwith %}
+{% endwith %}
+    
+  
+
+    <div class="ade" style="display: flex; justify-content: space-between;">
+        <img src="static/img/q.png" alt=""style="width:190px; height:180px;"  >
+        
+     
+         <a href="" style="text-decoration: none; color: #fff; margin-top:60px; margin-right:20px;">
+          <h3><b>Sign Up<br>To Explore<b></h3>
+          <h6>Best Experience.</h6>
+        </a>
+    </div>
+    </div>
+    
+
+   
+    </div>
+    
+
+  </div>
+  <br>
+
+
+
+
+
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger mb-3" role="alert">
+          {{ message }}  {{current_user.name}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      
+      {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+     
+
+
+    
+
+
+
+
+
+
+
+
 <div class="container" style=" border-radius: 5px;  background: white; height: 100vh;">
     
       <div >
         <form action=" " class="form" method="POST", "GET"> 
             {{form.hidden_tag()}}
-            <img src="static/img/girl.gif" alt="" width="100%" style="height: 50vh; max-height: 50vh; border-radius: 50%; object-fit: contain;" >
+            
         </div>
       <div style="text-align: center; margin-top: 5vh; ">
         <h2 style=" margin-bottom: 2vh;"> SIGN UP</h2>
@@ -56,7 +115,7 @@
 
         <div style="margin-top: 3vh;">
         
-            {{form.submit(class="btn btn-lg",style="width: 90%; background: #992621; color: #fff; padding: 12px 20px; font-weight: 300; border: none; border-radius: 10px; font-weight: bold;")}}
+            {{form.submit(class="btn btn-lg",style="width: 90%; background: #00008B; color: #fff; padding: 12px 20px; font-weight: 300; border: none; border-radius: 10px; font-weight: bold;")}}
             
           
         </div>

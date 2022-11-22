@@ -39,7 +39,7 @@
                 </form>
 
             </form>
-            <button class="btn" style="color: #fff; background: #992621; border: none; margin-left: 3px;" type="logout">
+            <button class="btn" style="color: #fff; background: #00008B; border: none; margin-left: 3px;" type="logout">
               <a href="{{url_for('logout')}}" style="text-decoration: none; color: #fff;">Logout</a>
             </button>
             
@@ -62,7 +62,7 @@
                 
                   
                   <div class="side-menu">
-                    <h6 class="divider"><b>Admin </b></h6>
+                  
                     {% if title == 'dashboard' %}
                     <div class="side-nav-button-active">
                       <i class='bx bxs-dashboard icon'></i>
@@ -76,76 +76,44 @@
                     {% endif %}
 
 
-                    {% if title == "newschools" %}
-                    <div class="side-nav-button-active">
-                      <i class='bx bxs-bar-chart-square icon'></i>
-                      <a href="/newschools" class="side-nav-button-text">Schools</a>
-                    </div>
-                    {% else %}
-                    <div class="side-nav-button">
-                      <i class='bx bxs-bar-chart-square icon'></i>
-                      <a href="/newschools" class="side-nav-button-text">Schools</a>
-                    </div>
-                    {% endif %}
                     
 
                     {% if title == "list" %}
                     <div class="side-nav-button-active">
                       <i class='bx bx-group icon' ></i>
-                      <a href="/list" class="side-nav-button-text">Members</a>
+                      <a href="/list" class="side-nav-button-text">Tasks</a>
                     </div>
                     {% else %}
                     <div class="side-nav-button">
                       <i class='bx bx-group icon' ></i>
-                      <a href="/list" class="side-nav-button-text">Members</a>
+                      <a href="/list" class="side-nav-button-text">Tasks</a>
                     </div>
                     
                     {% endif %}
                     
 
 
-                    {% if title == "year" %}
-                    <div class="side-nav-button-active">
-                      <i class='bx bxs-calendar icon' ></i>
-                      <a href="/year" class="side-nav-button-text">Year Group</a>
-                    </div>
-                    {% else %}
-                    <div class="side-nav-button">
-                      <i class='bx bxs-calendar icon' ></i>
-                      <a href="/year" class="side-nav-button-text">Year Group</a>
-                    </div>
-                    {% endif %}
+                   
 
                     
                   </div>
                   <div class="side-menu">
-                    <h6 class="divider" style="margin-top: 2vh;"><b>Shortcuts</b> </h6>
+                   
                     {% if title == "addalumni" %}
                       <div class="side-nav-button-active">
                         <i class='bx bx-add-to-queue icon' ></i>
-                        <a href="/addalumni" class="side-nav-button-text">Add Alumni</a>
+                        <a href="/addalumni" class="side-nav-button-text">Add Task</a>
                       </div>
                       {% else %}
                       <div class="side-nav-button">
                         <i class='bx bx-add-to-queue icon' ></i>
-                        <a href="/addalumni" class="side-nav-button-text">Add Alumni</a>
+                        <a href="/addalumni" class="side-nav-button-text">Add Task</a>
                       </div>
                     
                     {% endif %}
 
 
-                    {% if title == "newreport" %}
-                    <div class="side-nav-button-active">
-                      <i class='bx bxs-report icon' ></i>
-                      <a href="/newreport" class="side-nav-button-text">Report</a>
-                    </div>
-                    {% else %}
-                    <div class="side-nav-button">
-                      <i class='bx bxs-report icon' ></i>
-                      <a href="/newreport" class="side-nav-button-text">Report</a>
-                    </div>
-                    {% endif %}
-                    
+                 
 
                     
                       
@@ -154,13 +122,11 @@
                     
                   </div>
                   <div class="profile-details" style=" bottom: 0; padding-top: 50%;">
-                    <div class="elipse" style="background: #992621; border-radius: 50%;">
-                      <img src="static/img/memoji.png" alt="" width="100%" >
-                    </div>
+                    
 
                     <div class="profile-info" style="padding-left: 10px;">
                       <div class="profile-name"><b>{{current_user.name}}</b> </div>
-                      <div class="title">Administrator</div>
+                      <div class="title">Class Representation</div>
                     </div>
                     
                     
@@ -244,3 +210,4 @@
 
 </body>
 </html>
+

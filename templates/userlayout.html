@@ -14,21 +14,59 @@
   </head>
   <body>
 
+    <script src="//code.tidio.co/z46yutguynyvhsigmqopusi6j8nnpg2c.js" async></script>
+    {% block div %}
+<div class="container" style=" border-radius:10px 0 0 150px; padding: 20px; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(84,84,201,1) 0%, rgba(0,212,255,1) 100%);">
+  <nav class="navbar bg-light fixed-top">
+    <div class="container-fluid">
 
-<div class="container" style=" border-radius: 5px; padding: 20px; background: #fff;">
+      <h5 style=" color: #5454c9;" ><b>Hi, {{current_user.name}}<b> </h5>
+      
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"  style="  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(84,84,201,1) 0%, rgba(0,212,255,1) 100%);">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hello, {{current_user.name}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Assignment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Course</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Attendance</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Course</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+         
+        </div>
+      </div>
+    </div>
+  </nav>
   <div class="row">
-    <div class="col" style="display: flex; justify-content: space-between;">
-      <h6 class="text-muted">{{smalltitle}}  {{name}}</h6>
-   
-      <a href="/information" style="color:#000;"> <i class='bx bxs-user bx-md icon' ></i></a>
-      </a>     
-
-
-    </div>  
-    <h1>{{header}}</h1>
-    <h6 class="text-muted">{{numberofentries}}</h6>
+    <h6 class="text-muted"  >Project Outline</h6>
     
+   
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -42,23 +80,41 @@
     {% endif %}
 {% endwith %}
     
-    Hello {{current_user.name}}
-
-    <form class="d-flex " role="search" style="margin-top: 3vh; margin-bottom: 5vh;"  method='POST' action='{{url_for('usersearch')}}'>
-      {{form.hidden_tag()}}
-      <input class="form-control " type="search"name='searched'  placeholder="Search a particular person or category" aria-label="Search">
-      <button class="btn" style="color: #fff; background: #992621; border: none; margin-left: 2vw;" type="submit"><i class='bx bx-search-alt icon'></i></button>
-        
-    </form>  
-
   
 
+    <form class="d-flex " role="search" style="margin-top: 3vh; "  method='POST' action='{{url_for('usersearch')}}'>
+      {{form.hidden_tag()}}
+      <input class="form-control " type="search"name='searched'  placeholder="Search for a particular course" aria-label="Search">
+      <button class="btn" style="color: #fff; background: #00008B; border: none; margin-left: 2vw;" type="submit">Enter</button>
+        
+    </form>  
+    <div class="ade" style="display: flex; justify-content: space-between;">
+         <img src="static/img/memoji.png" alt=""style="width:190px; height:180px;"  >
+        
+     
+         <a href="" style="text-decoration: none; color: #fff; margin-top:60px; margin-right:20px;">
+          <h3><b>Welcome to<br> MyWorkSpace<b></h3>
+          <h6>Best Experience.</h6>
+        </a>
+    </div>
+    </div>
+    
 
-   
+    <div class="ade" style="display: flex; justify-content: space-between;">
+      <button class="btn" style="color: #fff; background: #00008B; border: none; margin-left: 2vw;" type="submit">+ Create A New Task</button>
+        
+     
+      <a href="" style="text-decoration: none; background-color:#e62626; border-radius:100px; height:40px; width:40px; text-align:center; padding:8px; color: #fff;">
+        <h6>+</h6>
+      </a>
+    </div>
+    </div>
+    
 
   </div>
   <br>
-
+ 
+  {% endblock div %}
 
 
   {% block body %}
