@@ -3,8 +3,8 @@
 
 
 
-<h4>Add a New Alumni</h4>
-<p class="text-muted" style="margin-bottom: 0;">Please fill in this form :</p>
+<h4>Add a new Assignment</h4>
+<p class="text-muted" style="margin-bottom: 0;">Upload the Assignment</p>
 <br>
 <form action='' method="post" enctype="multipart/form-data">
   {{form.hidden_tag()}}
@@ -12,15 +12,15 @@
   <label for="image-picker">
     <div>
         {% if editCandidate %}
-        <img id="image-preview" style="height: 30vh; object-fit:contain" src={{candidate.testField}} alt="your image" />
+        <img id="image-preview" style="height: 30vh; margin:auto; object-fit:contain" src={{candidate.testField}} alt="your image" />
         {% else %}
-        <img id="image-preview" style="height: 30vh; object-fit:contain" src="{{url_for('static', filename='img/ig.png')}}" alt="your image" />
+        <img id="image-preview" style="height: 17vh;margin-bottom:20px; margin-left:px; object-fit:contain" src="{{url_for('static', filename='img/po.png')}}" alt="your image" />
         {% endif %}
     </div>      
-    <h6 id="error" style="color: red; display: none;">Please upload an image to continue</h6>
-</label>
-
-<input style="display:none" id="image-picker" type="file" required="required" accept="image/*" />
+  </label>
+  
+  <input style="display:none" id="image-picker" type="file"  accept="image/*" />
+  <h6 id="error" style="color: red; display: none;">Upload the Assignment</h6>
 
 
   <div class="form-floating mb-3" >

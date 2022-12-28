@@ -661,8 +661,26 @@ def login():
 @app.route('/login', methods=['POST','GET'])
 def login():
     form = LoginForm()
-  
-   
+    print ('try')
+    print(form.email.data)
+    print(form.password.data)
+    
+    if form.validate_on_submit():
+        print("form Validated successfully")
+        user = Person.query.filter_by(email = form.email.data).first()
+        print("user:" + user.email + "found")
+      
+        print(user.password)
+        if user and form.password.data == user.password:
+            print(user.email + "validored successfully")
+            if user == None:
+                flash(f"There was a problem")   
+            login_user(user)
+            flash (f' ' + user.email + ',Welcome Admin ' ,'success')
+            return redirect(url_for('dashboard'))
+            # next = request.args.get('next')
+        else:
+            flash (f'Wrong Password ', 'success')
     return render_template('login.html', form=form)
  
 
@@ -755,7 +773,6 @@ def ulogin():
 @app.route('/useryeargroup', methods=['GET', 'POST'])
 @login_required
 def useryeargroup():  
-    
     return render_template("useryeargroup.html", header="Year Group", smalltitle="Central Alumni Platform", name="", numberofentries="16 entries")
  
 

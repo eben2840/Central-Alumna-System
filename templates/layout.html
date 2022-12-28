@@ -21,27 +21,20 @@
       AOS.init();
     </script>
 
-      <nav class="navbar navbar-expand-lg sticky-top" style="background: #fff; ">
+      <nav class="navbar navbar-expand-lg bg-success  sticky-top" style="background: #fff; ">
         <div class="container-fluid">
           <a class="navbar-brand">
-            <img src="https://www.central.edu.gh/virgin/images/Central-Uni-logo.png" alt="" width="15%">
+            <img src="static/img/po.png" alt="" width="40%" style="padding:10px;" >
           </a>
+        
+       
+           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse me-2" id="navbarSupportedContent" style="width: 100%;">
             
-            <form class="d-flex " role="search" method='POST' action='{{url_for('search')}}' >
-              {{form.hidden_tag()}}
-            
-              <input class="form-control " type="search" name='searched' placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-
-            </form>
-            <button class="btn" style="color: #fff; background: #00008B; border: none; margin-left: 3px;" type="logout">
-              <a href="{{url_for('logout')}}" style="text-decoration: none; color: #fff;">Logout</a>
-            </button>
             
           </div>
         </div>
@@ -61,10 +54,10 @@
               
                 
                   
-                  <div class="side-menu">
+                  <div class="side-menu" >
                   
                     {% if title == 'dashboard' %}
-                    <div class="side-nav-button-active">
+                    <div class="side-nav-button-active" style="margin-top:20px;">
                       <i class='bx bxs-dashboard icon'></i>
                       <a href="/dashboard" class="side-nav-button-text">Dashboard</a>
                     </div>
@@ -81,12 +74,12 @@
                     {% if title == "list" %}
                     <div class="side-nav-button-active">
                       <i class='bx bx-group icon' ></i>
-                      <a href="/list" class="side-nav-button-text">Tasks</a>
+                      <a href="/list" class="side-nav-button-text">Assignments</a>
                     </div>
                     {% else %}
                     <div class="side-nav-button">
                       <i class='bx bx-group icon' ></i>
-                      <a href="/list" class="side-nav-button-text">Tasks</a>
+                      <a href="/list" class="side-nav-button-text">Assignments</a>
                     </div>
                     
                     {% endif %}
@@ -102,44 +95,47 @@
                     {% if title == "addalumni" %}
                       <div class="side-nav-button-active">
                         <i class='bx bx-add-to-queue icon' ></i>
-                        <a href="/addalumni" class="side-nav-button-text">Add Task</a>
+                        <a href="/addalumni" class="side-nav-button-text">Add Assignments</a>
                       </div>
                       {% else %}
                       <div class="side-nav-button">
                         <i class='bx bx-add-to-queue icon' ></i>
-                        <a href="/addalumni" class="side-nav-button-text">Add Task</a>
+                        <a href="/addalumni" class="side-nav-button-text">Add Assignments</a>
                       </div>
                     
                     {% endif %}
 
-
+                    <form class="d-flex " role="search" method='POST' action='{{url_for('search')}}'style="margin-top:20px;" >
+                      {{form.hidden_tag()}}
+                    
+                      <input class="form-control " type="search" name='searched' placeholder="Search" aria-label="Search" style="">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+        
+                    </form>
                  
 
-                    
-                      
+         
                       
                     
                     
                   </div>
-                  <div class="profile-details" style=" bottom: 0; padding-top: 50%;">
-                    
-
+                  <div class="profile-details" style=" bottom: 0; padding-top: 100%;">
                     <div class="profile-info" style="padding-left: 10px;">
                       <div class="profile-name"><b>{{current_user.name}}</b> </div>
-                      <div class="title">Class Representation</div>
+                      <div class="title">Hello, Class Representation</div>
+                      </div>
+                      </div>
+                                 
+          
+            <button class="btn" style="color: #fff; background: #00008B; border: none; margin-left: 3px;" type="logout">
+              <a href="{{url_for('logout')}}" style="text-decoration: none; color: #fff;">Logout</a>
+            </button>
+                      
                     </div>
                     
-                    
-
                   </div>
                   
-                    
-                    
-                    
-                  
-                
-        </div>
-            </div>
             <div class="col offset-3" id="main">
               <div class="container" style="background-color: #f2f2f2; padding: 20px; border-radius: 20px 0 0 0;">
                 
