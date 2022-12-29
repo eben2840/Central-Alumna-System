@@ -4,7 +4,7 @@
 
 
 <h4>Add a new Assignment</h4>
-<p class="text-muted" style="margin-bottom: 0;">Upload the Assignment</p>
+
 <br>
 <form action='' method="post" enctype="multipart/form-data">
   {{form.hidden_tag()}}
@@ -52,17 +52,85 @@
   </div>
 
 
-  <div class="form-floating mb-3">
-    {{form.completed(class="form-control",placeholder="Completion Date",id="floatingInput")}}
-    <label for="floatingInput" class="text-muted">Completion Date</label>
+  
+  
+  <div class="form-floating mb-3" >
+    {{form.image_file (class="form-control", id="firebaseLink" )}}
+    
   </div>
+  
+  <button class="btn" style="color: #fff; background: #992621; border: none;" type="submit" id="submitButton">Register</button>
+  
 
 
-    <div class="form-floating mb-3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="form-floating mb-3" style="margin-top:700px;">
       {{form.gender(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
       <label for="floatingInput" class="text-muted">Gender</label>
     </div>
     
+
+<div class="form-floating mb-3">
+  {{form.completed(class="form-control",placeholder="Completion Date",id="floatingInput")}}
+  <label for="floatingInput" class="text-muted">Completion Date</label>
+</div>
+
+
   <div class="form-floating mb-3">
     {{form.school(class="form-control",placeholder="INT/19/01/5837",id="floatingInput")}}
     <label for="floatingInput" class="text-muted">School / Faculty</label>
@@ -125,14 +193,6 @@
     <label for="floatingInput" class="text-muted">Extra Curicullum Activities</label>
   </div>
 
-  
-  <div class="form-floating mb-3" >
-    {{form.image_file (class="form-control", id="firebaseLink" )}}
-   
-  </div>
-
-  <button class="btn" style="color: #fff; background: #992621; border: none;" type="submit" id="submitButton">Register</button>
-              
 </form>
 
 <script>

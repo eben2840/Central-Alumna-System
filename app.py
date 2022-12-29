@@ -256,7 +256,7 @@ def upload_image():
     return render_template('newreport.html')
 
 
-@app.route('/index')
+@app.route('/')
 def index():    
     return render_template('index.html')
 
@@ -650,7 +650,7 @@ def login():
         password = request.form['password']
         user = [x for x in users if x.username == username][0]
         if user and user.password == password:
-            return redirect(url_for('test'))
+            return redirect(url_for('test')) 0
 
         return redirect(url_for('login'))
     else:
@@ -737,7 +737,7 @@ def usersignup():
     return render_template('usersignup.html', form=form)
    
 
-@app.route('/', methods=['POST','GET'])
+@app.route('/userlogin', methods=['POST','GET'])
 def ulogin():
     form = LoginForm()
     print ('try')
@@ -781,6 +781,24 @@ def useryeargroup():
 @login_required
 def usernewform():
     return render_template('usernewform.html', header="Schools / Faculty", smalltitle="2021", name="", numberofentries="16 entries")
+
+
+@app.route('/verify')
+@login_required
+def verify():
+    return render_template('scan1.html')
+
+
+@app.route('/info')
+@login_required
+def info():
+    return render_template('scan2.html')
+
+
+@app.route('/scan')
+@login_required
+def scan():
+    return render_template('scan3.html')
 
 
 @app.route('/userschool')

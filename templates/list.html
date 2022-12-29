@@ -3,16 +3,32 @@
 
 <div class="row">
 
-    {%for user in users%} 
+  {%for user in users%} 
+  <div style="background-color:#; padding:10px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+  <a href="{{url_for("userinformation", userid=user.id)}}" style="text-decoration: none; color: #992621; ">
 
-      <div class="department-item" data-aos="fade-down-left">
-        <a href="{{url_for("list", userid=user.id)}}" style="text-decoration: none; color: #992621;">
-          <h4 class="names"> {{user.fullname}}</h4>
-          <h6 class="text-muted">{{user.indexnumber}}</h6>
+    <h5 class="names" style="font-size:20px; color:#1E90FF; padding:10px;"><b> {{user.fullname}}</h5><!--<a href="/delete/{{user.id}}"class="btn"><i class="fa fa-trash" aria-hidden="true">delete</i>  </i></a></b>-->
+    
+    <div class="ade" style="display: flex;  margin-bottom:20px;">
+      <a href="" style="text-decoration: none; color: #992621; ">
+        <h6  class="text-muted" style="background-color:#ADD8E6; padding:3px; font-size:13px; margin:3px; border-radius:3px;" >{{user.indexnumber}}</h6>
       </a>
-      </div>
 
-    {% endfor %}  
+      <a href="" style="text-decoration: none; color: #992621;">
+        <h6  class="text-muted" style="background-color:#FFCCCB;  padding:3px; font-size:13px; margin:3px; border-radius:3px;">{{user.email}}</h6>
+      </a>
+    </div>
+
+    <div class="ade" style="display: flex; justify-content: space-between; margin-bottom:2px;">
+      <p class="text-muted">{{user.guardian}}</p>
+      <a href="" style="text-decoration: none; color: #992621;">
+        <h6  class="text-muted"style=" padding:2px; font-size:9px;" >{{user.work}} Days left</h6>
+      </a>
+    </div>
+
+  </a>
+</div>
+  {% endfor %} 
   
   
     </div>
