@@ -194,6 +194,21 @@ def land():
     return render_template('land.html')
 
 
+# @app.route('/database')
+# def database():
+#     return render_template('database.html')
+@app.route('/database', methods=['GET', 'POST'])
+@login_required
+def databases():
+    print("Fetching all")
+    users=User.query.order_by(User.id.desc()).all()
+    print(users)
+    print(current_user)
+    return render_template("database.html", users=users, current_user=current_user, title="list")
+ 
+
+
+
 
 
 
